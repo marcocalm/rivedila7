@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.rivediLa7" name="Rivedi LA7, LA7d e TG LA7" version="1.0.0" provider-name="ranamauro">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <language>it</language>
+        <summary lang="en">RIVEDILA7</summary>
+        <description lang="en">RIVEDILA7</description>
+        <summary lang="it">Rivedi LA7, LA7d e TG LA7</summary>
+        <description lang="it">RIVEDILA7</description>
+        <forum>http://forum.xbmc.org/showthread.php?tid=155920</forum>
+        <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
+        <platform>all</platform>
+        <source>https://github.com/ranamauro/plugin.video.rivediLa7</source>
+        <website>https://github.com/ranamauro/plugin.video.rivediLa7</website>
+        <email>ranamauro@github.com</email>
+    </extension>
+</addon>
