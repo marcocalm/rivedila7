@@ -17,8 +17,8 @@ import xbmcaddon
 
 
 # plugin constants
-__plugin__ = 'plugin.video.la7ondemand'
-__author__ = 'Nightflyer & ranamauro'
+__plugin__ = 'plugin.video.rivediLa7'
+__author__ = 'ranamauro'
 
 Addon = xbmcaddon.Addon(id = __plugin__)
 
@@ -38,10 +38,11 @@ def parameters_string_to_dict(parameters):
     paramDict = dict(urlparse.parse_qsl(parameters[1:]))
     return paramDict
 
-def addDirectoryItem(parameters, title, thumbnailImage = None):
-    listItem = xbmcgui.ListItem(title)
+def addDirectoryItem(parameters, title, thumbnailImage = None, iconImage = None):
+    listItem = xbmcgui.ListItem(title, iconImage = iconImage, thumbnailImage = thumbnailImage)
 
-    labels = {
+    # see http://wiki.xbmc.org/?title=InfoLabels
+    infoLabels = {
         'title': None,
         'tvshowtitle': None,
         'duration': None,
@@ -49,7 +50,7 @@ def addDirectoryItem(parameters, title, thumbnailImage = None):
         'airdate': None,
     }
 
-    listItem.setInfo(type = 'Video', thumbnailImage = thumbnailImage, infoLabels = labels)
+    listItem.setInfo(type = 'Video', infoLabels = infoLabels)
     addDirectoryListItem(parameters, listItem)
 
 def addDirectoryListItem(parameters, listItem):
@@ -436,7 +437,7 @@ def play_video(name, link):
 def show_root_menu():
     print('show_root_menu')
 
-    addDirectoryItem({'mode': '1'}, 'Tutti i Programmi')
+    addDirectoryItem({'mode': '1'}, 'Tutti i Programmi (NOT WORKING YET)')
     addDirectoryItem({'mode': '2'}, 'La Settimana (Tutti i Giorni)')
 
     for day in range(0, 7):
