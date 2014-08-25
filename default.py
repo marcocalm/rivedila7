@@ -156,7 +156,16 @@ def list_for_link(url):
         response_body = response_body[begin:end]
 
     response_body = response_body.replace('& ', '&amp; ')
-    tree = ET.fromstring(response_body)
+    response_body = response_body.replace('&nbsp;', ' ')
+    try:
+        tree = ET.fromstring(response_body)
+    except Exception as e:
+        print('=========================== begin ===========================')
+        print(response_body)
+        print('=========================== error ===========================')
+        print(e)
+        print('=========================== end =============================')
+        tree = ET.fromstring('')
 
     for divNode in tree.iter('div'):
         if 'id' not in divNode.attrib:
@@ -229,7 +238,16 @@ def get_by_url(url, day):
         response_body = response_body[begin:end]
 
     response_body = response_body.replace('& ', '&amp; ')
-    tree = ET.fromstring(response_body)
+    response_body = response_body.replace('&nbsp;', ' ')
+    try:
+        tree = ET.fromstring(response_body)
+    except Exception as e:
+        print('=========================== begin ===========================')
+        print(response_body)
+        print('=========================== error ===========================')
+        print(e)
+        print('=========================== end =============================')
+        tree = ET.fromstring('')
 
     for divNode in tree.iter('div'):
         if 'id' not in divNode.attrib:
