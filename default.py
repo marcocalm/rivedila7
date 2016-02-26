@@ -16,6 +16,7 @@ import xbmcplugin
 import xbmcaddon
 
 
+
 # plugin constants
 __plugin__ = 'plugin.video.rivediLa7'
 __author__ = 'ranamauro'
@@ -115,6 +116,10 @@ class VideoLinkHTMLParser(HTMLParser.HTMLParser):
     def process(self, response_body):
         self.list = []
         self.link = ''
+        import sys  
+
+        reload(sys)  
+        sys.setdefaultencoding('utf8')
         self.feed(response_body)
         self.list.sort()
         return self.list
@@ -167,7 +172,7 @@ def list_for_link(url):
         print('=========================== end =============================')
         tree = ET.fromstring('')
 
-    for divNode in tree.iter('div'):
+    for divNode in tree.getiterator('div'):
         if 'id' not in divNode.attrib:
             continue
 
@@ -176,12 +181,12 @@ def list_for_link(url):
                 continue
 
             # TODO: fish metadata out of this node
-            for imgNode in divNode.iter('img'):
+            for imgNode in divNode.getiterator('img'):
                 #print(333, imgNode, imgNode.attrib, imgNode.text)
                 continue;
 
             index = 0
-            for aNodes in divNode.iter('a'):
+            for aNodes in divNode.getiterator('a'):
                 #print(444, aNodes, index, aNodes.attrib, aNodes.text)
 
                 if index == 0:
@@ -194,7 +199,7 @@ def list_for_link(url):
                     name = title
                     break
 
-            for divNode2 in divNode.iter('div'):
+            for divNode2 in divNode.getiterator('div'):
                 #print(555, divNode2, divNode2.attrib, divNode2.text)
 
                 if divNode2.text is None:
@@ -218,12 +223,15 @@ def list_for_link(url):
 
     return list
 
+
 def get_by_url(url, day):
     print('get_by_url')
 
     list = []
 
     print(url)
+
+
 
     # pretend we're Chrome to make the HTTP server happy
     request = urllib2.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36'})
@@ -249,7 +257,7 @@ def get_by_url(url, day):
         print('=========================== end =============================')
         tree = ET.fromstring('')
 
-    for divNode in tree.iter('div'):
+    for divNode in tree.getiterator('div'):
         if 'id' not in divNode.attrib:
             continue
 
@@ -258,12 +266,12 @@ def get_by_url(url, day):
                 continue
 
             # TODO: fish metadata out of this node
-            for imgNode in divNode.iter('img'):
+            for imgNode in divNode.getiterator('img'):
                 #print(333, imgNode, imgNode.attrib, imgNode.text)
                 continue;
 
             index = 0
-            for aNodes in divNode.iter('a'):
+            for aNodes in divNode.getiterator('a'):
                 #print(444, aNodes, index, aNodes.attrib, aNodes.text)
 
                 if index == 0:
@@ -276,7 +284,7 @@ def get_by_url(url, day):
                     name = title
                     break
 
-            for divNode2 in divNode.iter('div'):
+            for divNode2 in divNode.getiterator('div'):
                 #print(555, divNode2, divNode2.attrib, divNode2.text)
 
                 if divNode2.text is None:
