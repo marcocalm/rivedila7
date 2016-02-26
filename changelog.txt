@@ -1,2 +1,4 @@
 [B]1.0.0[/B]
 - first release
+[B]1.0.1[/B]
+- fixed encoding error
